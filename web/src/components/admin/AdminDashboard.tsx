@@ -1,9 +1,3 @@
-// components/layout/AppLayout.jsx
-// Main layout wrapper — drop this around your page content
-// Usage:
-//   <AppLayout title="Dashboard" breadcrumbs={[{label:"Home",href:"/"},{label:"Dashboard"}]}>
-//     <YourPageContent />
-//   </AppLayout>
 
 import { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
