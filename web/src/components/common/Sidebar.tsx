@@ -73,7 +73,7 @@ export default function AppSidebar({ collapsed, onCollapse, mobileOpen, onClose 
   const [openMenus, setOpenMenus] = useState({});
 
   // ── Pick menu based on role ───────────────────────────────────────────────
-  const menuItems = user?.role === "admin" ? adminMenu : userMenu;
+  const menuItems = user?.role === "Admin" ? adminMenu : userMenu;
   const currentPath = window.location.pathname;
 
   const toggle = (label) =>
@@ -176,18 +176,7 @@ export default function AppSidebar({ collapsed, onCollapse, mobileOpen, onClose 
             )
           )}
 
-          {/* ── Account section ────────────────────── */}
-          <div className="sidebar-section-label mt-2">Account</div>
-
-          <button
-            className="menu-btn"
-            style={{ color: "#e05c5c" }}
-            onClick={logout}
-            title={collapsed ? "Sign Out" : undefined}
-          >
-            <i className="bi bi-box-arrow-right menu-icon" />
-            <span className="menu-label">Sign Out</span>
-          </button>
+          
 
         </nav>
 

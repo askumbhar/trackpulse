@@ -4,15 +4,15 @@ import { useAuth } from "../components/store/AuthContext";
 export default function ProtectedRoute({ allowedRoles = [], element }) {
   const { user } = useAuth();
  
-  // Not logged in → go to login
-  if (!user) {
-    return <Navigate to="/login" replace />;
-  }
+  // // Not logged in → go to login
+  // if (!user) {
+  //   return <Navigate to="/login" replace />;
+  // }
  
-  // Logged in but wrong role → go to their own home
-  if (!allowedRoles.includes(user.role)) {
-    return <Navigate to={user.role === "Admin" ? "/admin/AdminDashboard" : "/dashboard"} replace />;
-  }
+  // // Logged in but wrong role → go to their own home
+  // if (!allowedRoles.includes(user.role)) {
+  //   return <Navigate to={user.role === "Admin" ? "/admin/dashboard" : "/dashboard"} replace />;
+  // }
  
   return element;
 }
