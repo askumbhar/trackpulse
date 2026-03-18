@@ -1,8 +1,9 @@
+// src/components/admin/AdminDashboard.tsx
 import { useState, type ReactNode } from 'react'
 import Header  from '../common/Header'
 import Sidebar from '../common/Sidebar'
 import Footer  from '../common/Footer'
-import '../../styles/AppLayout.css'
+import '../../styles/AppLayout.css'   // ← layoutStyles moved here
 
 interface Props {
   children?: ReactNode
@@ -25,30 +26,28 @@ export default function AppLayout({ children, title = '', breadcrumbs = [] }: Pr
 
         <Sidebar
           collapsed={sidebarCollapsed}
-          onCollapse={() => setSidebarCollapsed(v => !v)}
+          onCollapse={() => setSidebarCollapsed(v => !v)}  // ← prop name fixed (was onToggleCollapse)
           mobileOpen={mobileSidebarOpen}
           onClose={() => setMobileSidebarOpen(false)}
         />
 
         <div className="app-main" style={{ marginLeft: sidebarWidth }}>
 
-          {/* Toolbar / page title — only shown when title prop is provided */}
-          {title && (
-            <div className="app-toolbar">
-              <h1 className="page-heading">{title}</h1>
-              {breadcrumbs.length > 0 && (
-                <ol className="breadcrumb">
-                  {breadcrumbs.map((crumb, i) => (
-                    <li key={i} className={`breadcrumb-item ${i === breadcrumbs.length - 1 ? 'active' : ''}`}>
-                      {crumb.href ? <a href={crumb.href}>{crumb.label}</a> : crumb.label}
-                    </li>
-                  ))}
-                </ol>
-              )}
-            </div>
-          )}
+          {/* Toolbar / page title */}
+          <div className="app-toolbar">
+            <h1 className="page-heading">{title}</h1>
+            {breadcrumbs.length > 0 && (
+              <ol className="breadcrumb">
+                {breadcrumbs.map((crumb, i) => (
+                  <li key={i} className={`breadcrumb-item ${i === breadcrumbs.length - 1 ? 'active' : ''}`}>
+                    {crumb.href ? <a href={crumb.href}>{crumb.label}</a> : crumb.label}
+                  </li>
+                ))}
+              </ol>
+            )}
+          </div>
 
-          {/* Page content — rendered by child component */}
+          {/* Page content */}
           <div className="app-content">
             {children}
           </div>

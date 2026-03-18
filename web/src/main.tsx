@@ -1,45 +1,26 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import { BrowserRouter} from "react-router-dom"
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.bundle.min.js';
-import { AuthProvider } from './components/store/AuthContext.tsx';
-import AppRoutes from './routes/Approutes.tsx';
+import { BrowserRouter } from 'react-router-dom'
 
+// ── Global styles (all bootstrap imports live here only) ──────────────────────
+import 'bootstrap/dist/css/bootstrap.min.css'
+import 'bootstrap/dist/js/bootstrap.bundle.min.js'
+import 'bootstrap-icons/font/bootstrap-icons.css'
+
+import { AuthProvider } from './context/AuthContext'
+import AppRoutes from './routes/Approutes'
+import './styles/theme.css'
+import { NotificationProvider } from './components/common/Notification'
 
 createRoot(document.getElementById('root')!).render(
-
   <StrictMode>
-  <BrowserRouter>
-
-   <AuthProvider>
-     <AppRoutes />
-   </AuthProvider>
-    {/* <Routes>
-      <Route path="/" element={<Login />} />
-
-      <Route path="/admin" element={<AppLayout />} />
-
-      <Route path="/oddsManager" element={<AppLayout title="Race Management">
-        <OddsManager />
-      </AppLayout>} />
-
-      <Route path="/fileUploader" element={<AppLayout title="File Uploader">
-        <FileUploader />
-      </AppLayout>} />
-
-
-      <Route path="/depositApprove" element={<AppLayout title="Deposit Approvals">
-        <DepositApprove />
-      </AppLayout>} />
-    </Routes>
-    <Routes>
-      <Route path="/UserDashboard" element={<AppLayout title="User Dashboard">
-        <UserDashboard />
-      </AppLayout>} />
-    </Routes> */}
-
-  </BrowserRouter>
+    <BrowserRouter>
+      <AuthProvider>
+        <NotificationProvider>
+        <AppRoutes />
+        </NotificationProvider>
+      </AuthProvider>
+      
+    </BrowserRouter>
   </StrictMode>
-  ,
 )

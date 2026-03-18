@@ -1,25 +1,82 @@
+/* src/styles/OddsManager.css */
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap');
 
+/* ── Page root ────────────────────────────────────── */
 .arm-root {
   font-family: 'DM Sans', sans-serif;
-  background: #f9f9f9;
-  min-height: 100vh;
-  padding: 24px;
+  padding: 4px 0;
+  color: #071437;
 }
-/* ...existing OddsManager styles... */
+
+/* ── Top bar: title + date picker ─────────────────── */
+.arm-topbar {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.arm-page-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #071437;
+  margin: 0 0 2px;
+}
+.arm-page-sub {
+  font-size: 12px;
+  color: #99a1b7;
+  margin: 0;
+}
+
+/* ── City tab strip ───────────────────────────────── */
+.arm-city-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding-bottom: 14px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid #f1f1f4;
+}
+
+.arm-city-tab {
+  background: #f5f8fa;
+  border: 1px solid #f1f1f4;
+  border-radius: 20px;
+  padding: 5px 16px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #99a1b7;
+  cursor: pointer;
+  transition: all 0.18s;
+  white-space: nowrap;
+}
+.arm-city-tab:hover {
+  border-color: #17c653;
+  color: #17c653;
+  background: rgba(23,198,83,0.05);
+}
+.arm-city-tab.active {
+  background: #17c653;
+  border-color: #17c653;
+  color: #fff;
+}
+
+/* ── Live race banner ─────────────────────────────── */
 .arm-live-banner {
-  background: linear-gradient(90deg, #1a1f2e 0%, #151929 100%);
-  border: 1px solid #2d3550;
+  background: #fff;
+  border: 1px solid #f1f1f4;
   border-left: 3px solid #f59e0b;
   border-radius: 8px;
   padding: 10px 18px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 20px;
+  margin-bottom: 16px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
 }
 .arm-live-badge {
-  background: #ef4444;
+  background: #f8285a;
   color: #fff;
   font-size: 10px;
   font-weight: 700;
@@ -33,210 +90,255 @@
   50%       { opacity: 0.6; }
 }
 .arm-race-title {
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 600;
-  color: #f1f5f9;
+  color: #071437;
 }
 .arm-race-live {
   color: #f59e0b;
   font-weight: 600;
-  font-size: 13px;
-  margin-left: 10px;
+  font-size: 12px;
+  margin-left: 8px;
 }
 .arm-remove-btn {
-  background: #374151;
-  border: none;
-  color: #9ca3af;
+  background: #f5f8fa;
+  border: 1px solid #f1f1f4;
+  color: #99a1b7;
   font-size: 11px;
   font-weight: 600;
   padding: 4px 12px;
   border-radius: 5px;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: all 0.2s;
 }
-.arm-remove-btn:hover { background: #ef4444; color: #fff; }
+.arm-remove-btn:hover {
+  background: rgba(248,40,90,0.08);
+  border-color: rgba(248,40,90,0.2);
+  color: #f8285a;
+}
+
+/* ── Panel card ───────────────────────────────────── */
 .arm-panel {
-  border: 1px solid #1e2640;
+  background: #fff;
+  border: 1px solid #f1f1f4;
   border-radius: 10px;
   overflow: hidden;
-  height: 100%;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
 }
 .arm-panel-header {
-  background: #1a1f30;
-  border-bottom: 1px solid #1e2640;
+  background: #fff;
+  border-bottom: 1px solid #f1f1f4;
   padding: 12px 16px;
   font-size: 12px;
   font-weight: 700;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: #94a3b8;
+  color: #99a1b7;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
+
+/* ── Horse table ──────────────────────────────────── */
 .arm-panel-body {
   padding: 0;
   overflow-y: auto;
   max-height: 480px;
   scrollbar-width: thin;
-  scrollbar-color: #2d3550 transparent;
+  scrollbar-color: #f1f1f4 transparent;
 }
 .arm-panel-body::-webkit-scrollbar { width: 4px; }
-.arm-panel-body::-webkit-scrollbar-thumb { background: #2d3550; border-radius: 4px; }
+.arm-panel-body::-webkit-scrollbar-thumb { background: #e5e7eb; border-radius: 4px; }
+
 .arm-table {
   width: 100%;
   border-collapse: collapse;
   font-size: 12.5px;
 }
 .arm-table thead th {
-  background: #1a1f30;
-  color: #64748b;
+  background: #f9fafb;
+  color: #99a1b7;
   font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  padding: 8px 12px;
-  border-bottom: 1px solid #1e2640;
+  padding: 9px 12px;
+  border-bottom: 1px solid #f1f1f4;
   white-space: nowrap;
 }
 .arm-table tbody tr {
-  border-bottom: 1px solid #1a1f2e;
-  transition: background 0.15s;
+  border-bottom: 1px solid #f9fafb;
+  transition: background 0.12s;
 }
-.arm-table tbody tr:hover { background: #1e2438; }
+.arm-table tbody tr:hover { background: #f9fafb; }
 .arm-table tbody td {
-  padding: 7px 12px;
-  color: #cbd5e1;
+  padding: 8px 12px;
+  color: #071437;
   vertical-align: middle;
-  font-family: 'DM Mono', monospace;
   font-size: 12px;
 }
-.arm-table tbody td:nth-child(2) {
-  font-family: 'DM Sans', sans-serif;
-  color: #e2e8f0;
-  font-weight: 500;
+.arm-table tbody td:nth-child(3) {
+  /* Horse name column */
+  font-weight: 600;
+  color: #071437;
 }
-.horse-id { color: #475569; font-size: 11px; }
+
+.horse-id {
+  color: #99a1b7;
+  font-size: 11px;
+  font-family: 'DM Mono', monospace;
+}
+
+/* ── Odds input ───────────────────────────────────── */
 .odds-input {
-  background: #4a5070;
-  border: 1px solid #2d3550;
-  border-radius: 5px;
-  color: #f1f5f9;
+  background: #f5f8fa;
+  border: 1px solid #f1f1f4;
+  border-radius: 6px;
+  color: #071437;
   font-family: 'DM Mono', monospace;
   font-size: 12px;
-  padding: 4px 8px;
-  width: 60px;
+  font-weight: 600;
+  padding: 5px 8px;
+  width: 68px;
   text-align: center;
-  transition: border-color 0.2s;
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
 .odds-input:focus {
   outline: none;
-  border-color: #1b84ff;
-  box-shadow: 0 0 0 2px rgba(27,132,255,0.15);
+  border-color: #17c653;
+  box-shadow: 0 0 0 2px rgba(23,198,83,0.12);
+  background: #fff;
 }
+
+/* ── Update button ────────────────────────────────── */
 .update-btn {
-  background: #1b84ff;
+  background: #17c653;
   border: none;
   color: #fff;
   font-size: 11px;
-  font-weight: 600;
-  padding: 4px 12px;
-  border-radius: 5px;
+  font-weight: 700;
+  padding: 5px 14px;
+  border-radius: 6px;
   cursor: pointer;
   transition: background 0.2s, transform 0.1s;
   white-space: nowrap;
 }
-.update-btn:hover  { background: #3b99ff; }
+.update-btn:hover  { background: #14b34a; }
 .update-btn:active { transform: scale(0.97); }
-.update-btn.saved  { background: #10b981; }
-.arm-sub-header {
-  padding: 12px 16px 8px;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: #94a3b8;
-  border-bottom: 1px solid #1e2640;
+.update-btn.saved  {
+  background: rgba(23,198,83,0.1);
+  color: #17c653;
+  border: 1px solid rgba(23,198,83,0.3);
 }
+
+/* ── Deposit rows (used by DepositApprove too) ────── */
 .deposit-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 9px 16px;
-  border-bottom: 1px solid #1a1f2e;
+  padding: 10px 16px;
+  border-bottom: 1px solid #f9fafb;
   gap: 8px;
-  transition: background 0.15s;
+  transition: background 0.12s;
 }
-.deposit-row:hover { background: #1e2438; }
+.deposit-row:hover { background: #f9fafb; }
+
 .deposit-user {
   font-size: 12px;
-  color: #94a3b8;
+  color: #99a1b7;
   font-family: 'DM Mono', monospace;
-  min-width: 64px;
+  min-width: 68px;
 }
 .deposit-amount {
   font-family: 'DM Mono', monospace;
   font-size: 12.5px;
   font-weight: 600;
-  min-width: 72px;
+  min-width: 80px;
   text-align: right;
 }
-.deposit-amount.positive { color: #10b981; }
-.deposit-amount.negative { color: #ef4444; }
+.deposit-amount.positive { color: #17c653; }
+.deposit-amount.negative { color: #f8285a; }
+
 .deposit-actions { display: flex; gap: 6px; }
+
 .approve-btn {
-  background: #10b981;
-  border: none;
+  background: rgba(23,198,83,0.1);
+  border: 1px solid rgba(23,198,83,0.25);
+  color: #17c653;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.approve-btn:hover {
+  background: #17c653;
   color: #fff;
-  font-size: 10px;
-  font-weight: 700;
-  padding: 3px 10px;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background 0.2s;
 }
-.approve-btn:hover { background: #059669; }
+
 .reject-btn {
-  background: #374151;
-  border: none;
-  color: #9ca3af;
+  background: rgba(248,40,90,0.08);
+  border: 1px solid rgba(248,40,90,0.2);
+  color: #f8285a;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.reject-btn:hover {
+  background: #f8285a;
+  color: #fff;
+}
+
+.deposit-badge-approve {
+  background: rgba(23,198,83,0.1);
+  color: #17c653;
   font-size: 10px;
   font-weight: 700;
   padding: 3px 10px;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background 0.2s, color 0.2s;
-}
-.reject-btn:hover { background: #ef4444; color: #fff; }
-.deposit-badge-approve {
-  background: rgba(16,185,129,0.15);
-  color: #10b981;
-  font-size: 10px;
-  font-weight: 700;
-  padding: 2px 8px;
-  border-radius: 4px;
+  border-radius: 20px;
+  border: 1px solid rgba(23,198,83,0.2);
 }
 .deposit-badge-reject {
-  background: rgba(239,68,68,0.12);
-  color: #ef4444;
+  background: rgba(248,40,90,0.08);
+  color: #f8285a;
   font-size: 10px;
   font-weight: 700;
-  padding: 2px 8px;
-  border-radius: 4px;
+  padding: 3px 10px;
+  border-radius: 20px;
+  border: 1px solid rgba(248,40,90,0.2);
 }
-.arm-trend-section {
-  padding: 14px 16px;
+
+/* ── Sub header ───────────────────────────────────── */
+.arm-sub-header {
+  padding: 10px 16px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #99a1b7;
+  border-bottom: 1px solid #f1f1f4;
+  background: #f9fafb;
 }
+
+/* ── Market trend ─────────────────────────────────── */
+.arm-trend-section { padding: 14px 16px; }
 .arm-trend-title {
   font-size: 11px;
   font-weight: 700;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: #94a3b8;
+  color: #99a1b7;
   margin-bottom: 12px;
 }
 .arm-trend-labels {
   display: flex;
   justify-content: space-between;
   font-size: 10px;
-  color: #475569;
+  color: #c8cdd8;
   font-family: 'DM Mono', monospace;
   margin-top: 6px;
 }

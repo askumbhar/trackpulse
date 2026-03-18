@@ -1,0 +1,257 @@
+/* src/styles/DepositFunds.css — light theme matching wireframe */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap');
+
+/* ── Root ─────────────────────────────────────────── */
+.df-root {
+  font-family: 'DM Sans', sans-serif;
+  padding: 4px 0;
+  color: #071437;
+}
+.df-page-title { font-size: 18px; font-weight: 700; color: #071437; margin: 0 0 2px; }
+.df-page-sub   { font-size: 12px; color: #99a1b7; margin: 0 0 24px; }
+
+/* ── Panel card ───────────────────────────────────── */
+.df-panel {
+  background: #fff;
+  border: 1px solid #f1f1f4;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+}
+.df-panel-header {
+  background: #fff;
+  border-bottom: 1px solid #f1f1f4;
+  padding: 14px 20px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #071437;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.df-panel-header i { color: #17c653; }
+.df-panel-body { padding: 20px; }
+
+/* ── QR box ───────────────────────────────────────── */
+.df-qr-box {
+  background: #f9fafb;
+  border: 1px solid #f1f1f4;
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+.df-qr-placeholder {
+  width: 160px; height: 160px;
+  background: #fff;
+  border: 1px solid #f1f1f4;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 60px;
+}
+.df-qr-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #071437;
+  text-align: center;
+}
+.df-qr-upi {
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+  color: #17c653;
+  background: rgba(23,198,83,0.08);
+  padding: 4px 14px;
+  border-radius: 20px;
+  font-weight: 600;
+  border: 1px solid rgba(23,198,83,0.2);
+}
+.df-qr-note {
+  font-size: 12px;
+  color: #99a1b7;
+  text-align: center;
+  line-height: 1.5;
+  background: #f9fafb;
+  border-radius: 8px;
+  padding: 10px 14px;
+  border: 1px solid #f1f1f4;
+}
+
+/* ── Form labels ──────────────────────────────────── */
+.df-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #99a1b7;
+  margin-bottom: 6px;
+  display: block;
+}
+
+/* ── Inputs ───────────────────────────────────────── */
+.df-input {
+  width: 100%;
+  background: #f9fafb;
+  border: 1px solid #f1f1f4;
+  border-radius: 8px;
+  color: #071437;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  padding: 10px 14px;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.df-input:focus {
+  border-color: #17c653;
+  box-shadow: 0 0 0 3px rgba(23,198,83,0.1);
+  background: #fff;
+}
+.df-input::placeholder { color: #c8cdd8; }
+
+.df-input-prefix { position: relative; }
+.df-input-prefix .prefix {
+  position: absolute;
+  left: 14px; top: 50%;
+  transform: translateY(-50%);
+  color: #99a1b7;
+  font-family: 'DM Mono', monospace;
+  font-size: 13px;
+  pointer-events: none;
+}
+.df-input-prefix .df-input { padding-left: 28px; }
+
+select.df-input { cursor: pointer; }
+select.df-input option { background: #fff; color: #071437; }
+
+/* ── Upload zone ──────────────────────────────────── */
+.df-upload-zone {
+  border: 2px dashed #e5e7eb;
+  border-radius: 10px;
+  padding: 28px 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+  background: #f9fafb;
+}
+.df-upload-zone:hover,
+.df-upload-zone.drag-over {
+  border-color: #17c653;
+  background: rgba(23,198,83,0.03);
+}
+.df-upload-icon {
+  font-size: 1.8rem;
+  color: #c8cdd8;
+  margin-bottom: 8px;
+  display: block;
+  transition: color 0.2s;
+}
+.df-upload-zone:hover .df-upload-icon,
+.df-upload-zone.drag-over .df-upload-icon { color: #17c653; }
+
+.df-upload-title {
+  font-size: 13px; font-weight: 600; color: #071437; margin-bottom: 4px;
+}
+.df-upload-sub { font-size: 11px; color: #99a1b7; }
+.df-upload-sub span { color: #17c653; font-weight: 600; }
+
+/* ── File preview ─────────────────────────────────── */
+.df-preview {
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid #f1f1f4;
+}
+.df-preview img {
+  width: 100%; max-height: 200px;
+  object-fit: contain;
+  background: #f9fafb;
+  display: block;
+}
+.df-preview-bar {
+  background: #f9fafb;
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  border-top: 1px solid #f1f1f4;
+}
+.df-preview-name {
+  font-size: 12px; color: #071437; font-weight: 500;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  font-family: 'DM Mono', monospace;
+}
+.df-preview-size { font-size: 11px; color: #99a1b7; white-space: nowrap; }
+.df-remove-btn {
+  background: rgba(248,40,90,0.08);
+  border: 1px solid rgba(248,40,90,0.2);
+  border-radius: 6px;
+  color: #f8285a;
+  font-size: 12px; font-weight: 600;
+  padding: 3px 10px;
+  cursor: pointer;
+  transition: background 0.2s;
+  white-space: nowrap; flex-shrink: 0;
+}
+.df-remove-btn:hover { background: rgba(248,40,90,0.15); }
+
+/* ── Format pills ─────────────────────────────────── */
+.df-formats { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 10px; }
+.df-format-pill {
+  font-size: 10px; font-weight: 600;
+  padding: 2px 8px; border-radius: 20px;
+  background: rgba(23,198,83,0.08);
+  color: #17c653;
+  border: 1px solid rgba(23,198,83,0.2);
+}
+
+/* ── Submit button ────────────────────────────────── */
+.df-submit-btn {
+  width: 100%;
+  background: #17c653;
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 13px; font-weight: 700;
+  padding: 12px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+}
+.df-submit-btn:hover:not(:disabled)  { background: #14b34a; }
+.df-submit-btn:active:not(:disabled) { transform: scale(0.98); }
+.df-submit-btn:disabled {
+  background: #e5e7eb; color: #99a1b7; cursor: not-allowed;
+}
+
+/* ── Success state ────────────────────────────────── */
+.df-success { text-align: center; padding: 40px 20px; }
+.df-success-icon {
+  font-size: 3rem; color: #17c653; display: block; margin-bottom: 16px;
+  animation: df-pop 0.4s ease;
+}
+@keyframes df-pop {
+  0%   { transform: scale(0.5); opacity: 0; }
+  70%  { transform: scale(1.15); }
+  100% { transform: scale(1); opacity: 1; }
+}
+.df-success h5 { color: #071437; font-weight: 700; margin-bottom: 8px; }
+.df-success p  { color: #99a1b7; font-size: 13px; }
+
+/* ── Validation error ─────────────────────────────── */
+.df-error {
+  font-size: 11px; color: #f8285a; margin-top: 5px;
+  display: flex; align-items: center; gap: 4px;
+}
+
+/* ── Info tip ─────────────────────────────────────── */
+.df-info-tip {
+  background: rgba(27,132,255,0.06);
+  border: 1px solid rgba(27,132,255,0.15);
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 12px; color: #1b84ff;
+  display: flex; align-items: flex-start; gap: 8px; line-height: 1.5;
+}

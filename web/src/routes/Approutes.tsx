@@ -1,6 +1,6 @@
 // src/routes/AppRoutes.jsx
 import { Routes, Route, Navigate } from "react-router-dom";
-import { useAuth } from "../components/store/AuthContext";
+import { useAuth } from "../context/AuthContext";
 import ProtectedRoute from "../guards/ProtectedRoute";
 
 // Auth
@@ -43,7 +43,7 @@ export default function AppRoutes() {
         element={
           !user
             ? <Login />
-            : <Navigate to={user.role === "Admin" ? "/admin/dashboard" : "/dashboard"} replace />
+            : <Navigate to={user.role === "Admin" ? "/admin/dashboard" : "/user/dashboard"} replace />
         }
       />
       <Route
@@ -51,7 +51,7 @@ export default function AppRoutes() {
         element={
           !user
             ? <Signup />
-            : <Navigate to={user.role === "Admin" ? "/admin/dashboard" : "/dashboard"} replace />
+            : <Navigate to={user.role === "Admin" ? "/admin/dashboard" : "/user/dashboard"} replace />
         }
       />
 

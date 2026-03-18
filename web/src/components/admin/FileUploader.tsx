@@ -1,63 +1,53 @@
-import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap-icons/font/bootstrap-icons.css";
-import UploadModal from "../common/UploadModal";
-import { useState } from "react";
-import axios from "axios";
+// src/components/admin/FileUploader.tsx
+import { useState } from 'react'
+import axios from 'axios'
 
-
-
-// ── Styles ────────────────────────────────────────────────────────────────────
-const styles = `
-  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap');
-
-  
-`;
-
-// ── Component ─────────────────────────────────────────────────────────────────
 export default function FileUploader() {
-  
-const [races, setRaces] = useState([]);
-  const [file, setFile] = useState(null);
+  const [races, setRaces] = useState([])
+  const [file,  setFile]  = useState<File | null>(null)
 
-  const handleFileChange = (e) => setFile(e.target.files[0]);
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFile(e.target.files?.[0] ?? null)
+  }
 
   const handleParse = async () => {
-    const formData = new FormData();
-    formData.append("file", file);
-
-    // Send HTML file to your backend parser endpoint
-    const res = await axios.post("/api/races/parse-html", formData);
-    setRaces(res.data); // preview before importing
-  };
+    if (!file) return
+    const formData = new FormData()
+    formData.append('file', file)
+    const res = await axios.post('/api/races/parse-html', formData)
+    setRaces(res.data)
+  }
 
   const handleImport = async () => {
-    await axios.post("/api/races/import", races);
-    alert("Races imported successfully!");
-  };
-  
+    await axios.post('/api/races/import', races)
+    alert('Races imported successfully!')
+  }
+
   return (
-    <>
-      <style>{styles}</style>
-      <div className="">
+    <div className="p-3">
+      <h5 className="mb-3">Race Card File Uploader</h5>
 
-        {/* Page title */}
-        <div className="d-flex align-items-center justify-content-between mb-3">
-          
-          <div className="d-flex gap-2">
-            {/* <button  className="btn btn-flex btn-primary" data-bs-toggle="modal" data-bs-target="#uploadModal">
-        <i className="ki-duotone ki-folder-up fs-2"><span className="path1"></span><span className="path2"></span></i>        Upload Files
-    </button> */}
-
-    <input type="file" accept=".html" onChange={handleFileChange} />
-      <button onClick={handleParse}>Parse File</button>
-
-      <button onClick={handleImport}>Import to DB</button>
-          </div>
-        </div>
-
-        
+      <div className="d-flex align-items-center gap-3 flex-wrap">
+        <input
+          type="file"
+          accept=".html"
+          className="form-control"
+          style={{ maxWidth: 300 }}
+          onChange={handleFileChange}
+        />
+        <button className="btn btn-primary btn-sm" onClick={handleParse} disabled={!file}>
+          <i className="bi bi-file-earmark-code me-1" />Parse File
+        </button>
+        <button className="btn btn-success btn-sm" onClick={handleImport} disabled={races.length === 0}>
+          <i className="bi bi-database-add me-1" />Import to DB
+        </button>
       </div>
-      <UploadModal />
-    </>
-  );
+
+      {races.length > 0 && (
+        <div className="mt-3 alert alert-info">
+          {races.length} races parsed and ready to import.
+        </div>
+      )}
+    </div>
+  )
 }

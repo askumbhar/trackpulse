@@ -1,72 +1,200 @@
-.dashboard{
-  display:flex;
-  height:100vh;
+/* src/styles/Dashboard.css */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap');
+
+/* ── Root ─────────────────────────────────────────── */
+.db-root {
+  font-family: 'DM Sans', sans-serif;
+  color: #071437;
+  padding: 4px 0;
 }
 
-/* sidebar */
+/* ── Page header ──────────────────────────────────── */
+.db-page-title { font-size: 18px; font-weight: 700; color: #071437; margin: 0 0 2px; }
+.db-page-sub   { font-size: 12px; color: #99a1b7; margin: 0 0 24px; }
 
-.sidebar{
-  width:240px;
-  background:#1f2a44;
-  color:white;
-  padding:20px;
+/* ── Stat card ────────────────────────────────────── */
+.db-stat-card {
+  background: #fff;
+  border: 1px solid #f1f1f4;
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  transition: box-shadow 0.2s, transform 0.2s;
+  height: 100%;
+}
+.db-stat-card:hover {
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  transform: translateY(-1px);
 }
 
-.menu{
-  list-style:none;
-  padding:0;
+.db-stat-icon {
+  width: 42px; height: 42px;
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+.db-stat-icon.green  { background: rgba(23,198,83,0.1);  color: #17c653; }
+.db-stat-icon.blue   { background: rgba(27,132,255,0.1); color: #1b84ff; }
+.db-stat-icon.amber  { background: rgba(246,177,0,0.1);  color: #f6b100; }
+.db-stat-icon.red    { background: rgba(248,40,90,0.1);  color: #f8285a; }
+.db-stat-icon.purple { background: rgba(120,80,255,0.1); color: #7850ff; }
+.db-stat-icon.teal   { background: rgba(20,184,166,0.1); color: #14b8a6; }
+
+.db-stat-label {
+  font-size: 11px; font-weight: 600;
+  letter-spacing: 0.07em; text-transform: uppercase;
+  color: #99a1b7;
+}
+.db-stat-value {
+  font-size: 26px; font-weight: 700; color: #071437;
+  font-family: 'DM Mono', monospace; line-height: 1;
+}
+.db-stat-badge {
+  display: inline-flex; align-items: center; gap: 3px;
+  font-size: 11px; font-weight: 600;
+  padding: 2px 8px; border-radius: 20px;
+}
+.db-stat-badge.up   { background: rgba(23,198,83,0.1);  color: #17c653; }
+.db-stat-badge.down { background: rgba(248,40,90,0.1);  color: #f8285a; }
+.db-stat-badge.flat { background: rgba(99,115,141,0.1); color: #6c7490; }
+
+/* ── Chart panel ──────────────────────────────────── */
+.db-panel {
+  background: #fff;
+  border: 1px solid #f1f1f4;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  height: 100%;
+}
+.db-panel-header {
+  padding: 14px 18px;
+  border-bottom: 1px solid #f1f1f4;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.db-panel-title {
+  font-size: 14px; font-weight: 700; color: #071437; margin: 0;
+}
+.db-panel-sub {
+  font-size: 11px; color: #99a1b7; margin-top: 1px;
+}
+.db-panel-body { padding: 16px 18px; }
+
+/* ── Period selector pills ────────────────────────── */
+.db-period-tabs {
+  display: flex; gap: 4px;
+}
+.db-period-tab {
+  background: none; border: 1px solid #f1f1f4;
+  border-radius: 20px; padding: 3px 10px;
+  font-size: 11px; font-weight: 600; color: #99a1b7;
+  cursor: pointer; transition: all 0.18s;
+}
+.db-period-tab:hover  { border-color: #17c653; color: #17c653; }
+.db-period-tab.active { background: #17c653; border-color: #17c653; color: #fff; }
+
+/* ── Recent bets table ────────────────────────────── */
+.db-table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+.db-table thead th {
+  background: #f9fafb; color: #99a1b7; font-size: 10px;
+  font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase;
+  padding: 9px 12px; border-bottom: 1px solid #f1f1f4; white-space: nowrap;
+}
+.db-table tbody tr { border-bottom: 1px solid #f9fafb; transition: background 0.12s; }
+.db-table tbody tr:hover { background: #f9fafb; }
+.db-table tbody td { padding: 9px 12px; color: #071437; vertical-align: middle; }
+.db-table .mono { font-family: 'DM Mono', monospace; font-weight: 600; }
+
+/* Status badges */
+.db-badge {
+  font-size: 10px; font-weight: 700;
+  padding: 3px 9px; border-radius: 20px;
+  display: inline-block;
+}
+.db-badge.won     { background: rgba(23,198,83,0.1);  color: #17c653; }
+.db-badge.lost    { background: rgba(248,40,90,0.1);  color: #f8285a; }
+.db-badge.pending { background: rgba(246,177,0,0.1);  color: #f6b100; }
+.db-badge.cashout { background: rgba(27,132,255,0.1); color: #1b84ff; }
+.db-badge.active  { background: rgba(23,198,83,0.1);  color: #17c653; }
+.db-badge.closed  { background: rgba(99,115,141,0.1); color: #6c7490; }
+
+/* ── Activity list ────────────────────────────────── */
+.db-activity-item {
+  display: flex; align-items: flex-start; gap: 12px;
+  padding: 10px 0; border-bottom: 1px solid #f9fafb;
+}
+.db-activity-item:last-child { border-bottom: none; }
+.db-activity-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  flex-shrink: 0; margin-top: 4px;
+}
+.db-activity-dot.green  { background: #17c653; }
+.db-activity-dot.blue   { background: #1b84ff; }
+.db-activity-dot.amber  { background: #f6b100; }
+.db-activity-dot.red    { background: #f8285a; }
+.db-activity-title { font-size: 13px; font-weight: 600; color: #071437; }
+.db-activity-meta  { font-size: 11px; color: #99a1b7; margin-top: 1px; }
+.db-activity-time  { font-size: 11px; color: #c8cdd8; margin-left: auto; white-space: nowrap; flex-shrink: 0; }
+
+/* ── Donut legend ─────────────────────────────────── */
+.db-legend { display: flex; flex-direction: column; gap: 10px; }
+.db-legend-item { display: flex; align-items: center; justify-content: space-between; font-size: 12.5px; }
+.db-legend-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+.db-legend-label { color: #071437; font-weight: 500; flex: 1; margin-left: 8px; }
+.db-legend-val { font-family: 'DM Mono', monospace; font-weight: 700; color: #071437; }
+.db-legend-pct { color: #99a1b7; font-size: 11px; margin-left: 6px; }
+
+/* ── Race countdown pill ──────────────────────────── */
+.db-race-row {
+  display: flex; align-items: center; gap: 12px;
+  padding: 10px 0; border-bottom: 1px solid #f9fafb;
+}
+.db-race-row:last-child { border-bottom: none; }
+.db-race-number { font-size: 11px; color: #99a1b7; font-family: 'DM Mono', monospace; min-width: 28px; }
+.db-race-name   { font-size: 13px; font-weight: 600; color: #071437; flex: 1; }
+.db-race-time   {
+  font-size: 11px; font-weight: 700; font-family: 'DM Mono', monospace;
+  background: rgba(246,177,0,0.1); color: #f6b100;
+  padding: 2px 8px; border-radius: 20px;
+}
+.db-race-time.live {
+  background: rgba(248,40,90,0.1); color: #f8285a;
+  animation: pulse-badge 1.5s infinite;
+}
+@keyframes pulse-badge {
+  0%,100% { opacity: 1; }
+  50%      { opacity: 0.6; }
 }
 
-.menu li{
-  padding:12px 0;
-  cursor:pointer;
+/* ── Wallet summary ───────────────────────────────── */
+.db-wallet-card {
+  background: linear-gradient(135deg, #17c653 0%, #0ea346 100%);
+  border-radius: 12px; padding: 22px;
+  color: #fff; position: relative; overflow: hidden;
 }
-
-/* main section */
-
-.main{
-  flex:1;
-  display:flex;
-  flex-direction:column;
+.db-wallet-card::before {
+  content: '';
+  position: absolute; top: -30px; right: -30px;
+  width: 130px; height: 130px;
+  background: rgba(255,255,255,0.08); border-radius: 50%;
 }
-
-/* topbar */
-
-.topbar{
-  height:60px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:0 20px;
-  background:white;
-  border-bottom:1px solid #ddd;
+.db-wallet-card::after {
+  content: '';
+  position: absolute; bottom: -20px; right: 40px;
+  width: 80px; height: 80px;
+  background: rgba(255,255,255,0.05); border-radius: 50%;
 }
-
-/* content */
-
-.content{
-  flex:1;
-  padding:25px;
-  background:#f4f6f9;
+.db-wallet-label { font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.8; margin-bottom: 6px; }
+.db-wallet-balance { font-size: 30px; font-weight: 700; font-family: 'DM Mono', monospace; line-height: 1; margin-bottom: 16px; }
+.db-wallet-row  { display: flex; justify-content: space-between; font-size: 12px; opacity: 0.85; margin-bottom: 4px; }
+.db-wallet-btn  {
+  margin-top: 14px; background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 8px; color: #fff; font-size: 12px; font-weight: 600;
+  padding: 8px 16px; cursor: pointer; width: 100%;
+  transition: background 0.2s;
 }
-
-/* cards */
-
-.cards{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:20px;
-}
-
-.card{
-  background:white;
-  padding:20px;
-  border-radius:8px;
-  box-shadow:0 2px 8px rgba(0,0,0,0.1);
-}
-
-.footer{
-  text-align:center;
-  padding:10px;
-  border-top:1px solid #eee;
-}
+.db-wallet-btn:hover { background: rgba(255,255,255,0.3); }

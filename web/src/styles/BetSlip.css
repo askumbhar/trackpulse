@@ -1,0 +1,192 @@
+/* src/styles/BetSlip.css — matches wireframe light theme */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap');
+
+/* ── Root ─────────────────────────────────────────── */
+.rsw-root {
+  font-family: 'DM Sans', sans-serif;
+  padding: 4px 0;
+  color: #071437;
+}
+.rsw-page-title { font-size: 18px; font-weight: 700; color: #071437; margin: 0 0 2px; }
+.rsw-page-sub   { font-size: 12px; color: #99a1b7; margin: 0 0 16px; }
+
+/* ── Tab toggles (Shortlist / Main Race) ──────────── */
+.rsw-tabs { display: flex; gap: 8px; margin-bottom: 16px; }
+.rsw-tab {
+  background: #fff;
+  border: 1px solid #f1f1f4;
+  border-radius: 20px;
+  padding: 5px 16px;
+  font-size: 12px; font-weight: 600; color: #99a1b7;
+  cursor: pointer; transition: all 0.2s;
+}
+.rsw-tab.active { background: #17c653; border-color: #17c653; color: #fff; }
+.rsw-tab:hover:not(.active) { border-color: #d1d5db; color: #071437; }
+
+/* ── Date strip ───────────────────────────────────── */
+.rsw-date-strip {
+  display: flex; align-items: center;
+  background: #fff; border: 1px solid #f1f1f4; border-radius: 10px;
+  padding: 8px 12px; gap: 4px; margin-bottom: 20px;
+  overflow-x: auto; scrollbar-width: none;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+.rsw-date-strip::-webkit-scrollbar { display: none; }
+
+.rsw-date-pill {
+  display: flex; flex-direction: column; align-items: center;
+  padding: 7px 14px; border-radius: 8px; cursor: pointer;
+  transition: all 0.2s; min-width: 52px; border: 1px solid transparent;
+}
+.rsw-date-pill:hover  { background: #f5f8fa; }
+.rsw-date-pill.active { background: #17c653; border-color: #17c653; }
+
+.rsw-date-day {
+  font-size: 10px; font-weight: 600; letter-spacing: 0.06em;
+  text-transform: uppercase; color: #99a1b7;
+}
+.rsw-date-pill.active .rsw-date-day { color: rgba(255,255,255,0.8); }
+
+.rsw-date-num {
+  font-size: 16px; font-weight: 700; color: #071437;
+  font-family: 'DM Mono', monospace; line-height: 1.2; margin-top: 2px;
+}
+.rsw-date-pill.active .rsw-date-num { color: #fff; }
+
+.rsw-date-nav {
+  background: none; border: 1px solid #f1f1f4; border-radius: 6px;
+  color: #99a1b7; width: 30px; height: 30px;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; flex-shrink: 0; transition: all 0.2s; margin: 0 4px;
+}
+.rsw-date-nav:hover { border-color: #17c653; color: #17c653; }
+
+/* ── Panel ────────────────────────────────────────── */
+.rsw-panel {
+  background: #fff; border: 1px solid #f1f1f4; border-radius: 12px; overflow: hidden;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+}
+.rsw-panel-header {
+  background: #fff; border-bottom: 1px solid #f1f1f4; padding: 12px 16px;
+  font-size: 13px; font-weight: 700; color: #071437;
+  display: flex; align-items: center; justify-content: space-between;
+}
+
+/* ── Race card row ────────────────────────────────── */
+.rsw-race-card {
+  display: flex; align-items: center; padding: 13px 16px;
+  border-bottom: 1px solid #f1f1f4; cursor: pointer; transition: background 0.15s; gap: 12px;
+}
+.rsw-race-card:last-child { border-bottom: none; }
+.rsw-race-card:hover    { background: #f9fafb; }
+.rsw-race-card.selected { background: #f0fdf5; border-left: 3px solid #17c653; }
+
+.rsw-race-icon {
+  width: 38px; height: 38px; border-radius: 8px;
+  background: rgba(23,198,83,0.1); display: flex; align-items: center;
+  justify-content: center; flex-shrink: 0; font-size: 18px;
+}
+.rsw-race-info  { flex: 1; min-width: 0; }
+.rsw-race-name  { font-size: 13px; font-weight: 600; color: #071437; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.rsw-race-meta  { display: flex; align-items: center; gap: 8px; margin-top: 2px; }
+.rsw-race-time  { font-size: 11px; color: #99a1b7; font-family: 'DM Mono', monospace; }
+.rsw-race-horses{ font-size: 11px; color: #99a1b7; }
+.rsw-race-tag   { font-size: 10px; font-weight: 600; background: rgba(23,198,83,0.1); color: #17c653; padding: 2px 8px; border-radius: 20px; }
+.rsw-race-arrow { color: #d1d5db; font-size: 14px; transition: color 0.2s, transform 0.2s; }
+.rsw-race-card:hover    .rsw-race-arrow { color: #17c653; transform: translateX(3px); }
+.rsw-race-card.selected .rsw-race-arrow { color: #17c653; }
+
+/* ── Wallet card ──────────────────────────────────── */
+.rsw-wallet {
+  background: #fff; border: 1px solid #f1f1f4; border-radius: 12px;
+  padding: 20px; margin-bottom: 16px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+}
+.rsw-wallet-label { font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #99a1b7; margin-bottom: 4px; }
+.rsw-wallet-balance { font-size: 30px; font-weight: 700; color: #071437; font-family: 'DM Mono', monospace; line-height: 1; margin-bottom: 14px; }
+.rsw-wallet-balance span { font-size: 16px; color: #99a1b7; margin-right: 2px; }
+.rsw-wallet-rows { display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; }
+.rsw-wallet-row  { display: flex; justify-content: space-between; align-items: center; font-size: 13px; }
+.rsw-wallet-row-label { color: #99a1b7; }
+.rsw-wallet-row-value { font-family: 'DM Mono', monospace; font-weight: 600; font-size: 13px; }
+.rsw-wallet-row-value.approved { color: #17c653; }
+.rsw-wallet-row-value.pending  { color: #f6b100; }
+
+.rsw-deposit-btn {
+  width: 100%; background: #17c653; border: none; border-radius: 8px;
+  color: #fff; font-size: 13px; font-weight: 600; padding: 10px; cursor: pointer;
+  transition: background 0.2s; display: flex; align-items: center; justify-content: center; gap: 6px;
+}
+.rsw-deposit-btn:hover { background: #14b34a; }
+
+/* ── Betting history rows ─────────────────────────── */
+.rsw-history-card {
+  display: flex; align-items: center; padding: 11px 16px;
+  border-bottom: 1px solid #f1f1f4; gap: 12px; transition: background 0.15s;
+}
+.rsw-history-card:last-child { border-bottom: none; }
+.rsw-history-card:hover { background: #f9fafb; }
+
+.rsw-history-icon {
+  width: 34px; height: 34px; border-radius: 8px; background: rgba(246,177,0,0.1);
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 15px;
+}
+.rsw-history-info  { flex: 1; min-width: 0; }
+.rsw-history-race  { font-size: 13px; font-weight: 600; color: #071437; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.rsw-history-meta  { font-size: 11px; color: #99a1b7; margin-top: 1px; font-family: 'DM Mono', monospace; }
+
+/* Status badges on history rows */
+.rsw-status-won     { font-size: 11px; font-weight: 700; background: rgba(23,198,83,0.1);  color: #17c653; padding: 2px 8px; border-radius: 20px; }
+.rsw-status-lost    { font-size: 11px; font-weight: 700; background: rgba(248,40,90,0.1);  color: #f8285a; padding: 2px 8px; border-radius: 20px; }
+.rsw-status-pending { font-size: 11px; font-weight: 700; background: rgba(246,177,0,0.1);  color: #f6b100; padding: 2px 8px; border-radius: 20px; }
+.rsw-status-cashout { font-size: 11px; font-weight: 700; background: rgba(27,132,255,0.1); color: #1b84ff; padding: 2px 8px; border-radius: 20px; }
+
+.rsw-shortcut-btn {
+  background: rgba(27,132,255,0.08); border: 1px solid rgba(27,132,255,0.2);
+  border-radius: 6px; color: #1b84ff; font-size: 11px; font-weight: 600;
+  padding: 4px 10px; cursor: pointer; transition: all 0.2s; white-space: nowrap;
+}
+.rsw-shortcut-btn:hover { background: rgba(27,132,255,0.15); }
+
+/* ── Betting Interface table (from wireframe right panel) */
+.bi-table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+.bi-table thead th {
+  background: #f9fafb; color: #99a1b7; font-size: 11px; font-weight: 600;
+  letter-spacing: 0.05em; text-transform: uppercase; padding: 8px 12px;
+  border-bottom: 1px solid #f1f1f4; white-space: nowrap;
+}
+.bi-table tbody tr { border-bottom: 1px solid #f9fafb; transition: background 0.1s; }
+.bi-table tbody tr:hover { background: #f9fafb; }
+.bi-table tbody td { padding: 8px 12px; color: #071437; vertical-align: middle; }
+.bi-table .odds-val { font-family: 'DM Mono', monospace; font-weight: 600; color: #071437; }
+
+/* Bet type selector */
+.bet-type-wrap { display: flex; gap: 20px; margin-bottom: 16px; align-items: center; }
+.bet-type-option { display: flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 500; color: #071437; cursor: pointer; }
+.bet-type-option input[type="radio"] { accent-color: #17c653; width: 15px; height: 15px; }
+
+/* Stake input */
+.stake-input {
+  background: #f5f8fa; border: 1px solid #f1f1f4; border-radius: 6px;
+  color: #071437; font-family: 'DM Mono', monospace; font-size: 13px;
+  padding: 7px 10px; width: 80px; outline: none; transition: border-color 0.2s;
+}
+.stake-input:focus { border-color: #17c653; box-shadow: 0 0 0 2px rgba(23,198,83,0.1); }
+
+/* Place bet button */
+.place-bet-btn {
+  background: #17c653; border: none; border-radius: 8px; color: #fff;
+  font-size: 13px; font-weight: 700; padding: 10px 24px; cursor: pointer;
+  width: 100%; transition: background 0.2s; margin-top: 8px;
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+}
+.place-bet-btn:hover { background: #14b34a; }
+
+/* Potential payout box */
+.payout-box {
+  background: #f0fdf5; border: 1px solid rgba(23,198,83,0.2); border-radius: 8px;
+  padding: 12px 16px; display: flex; justify-content: space-between; align-items: center;
+  margin-top: 12px;
+}
+.payout-label { font-size: 11px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: #99a1b7; }
+.payout-value { font-size: 18px; font-weight: 700; color: #17c653; font-family: 'DM Mono', monospace; }
