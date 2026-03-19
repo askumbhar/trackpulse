@@ -49,8 +49,8 @@ export default function RaceCard({ raceId }: Props) {
         <thead>
           <tr>
             <th>Horse #</th>
-            <th>Name</th>
             <th>Win Odds</th>
+            <th>Name</th>            
             <th>Place Odds</th>
             <th>Action</th>
           </tr>
@@ -59,7 +59,7 @@ export default function RaceCard({ raceId }: Props) {
           {horses.map(horse => (
             <tr key={horse.id}>
               <td><span className="horse-id">{horse.id}</span></td>
-              <td>{horse.name}</td>
+              
               <td>
                 <input
                   type="number"
@@ -70,6 +70,7 @@ export default function RaceCard({ raceId }: Props) {
                   onChange={e => handleOddsChange(horse.id, 'winOdds', e.target.value)}
                 />
               </td>
+              <td>{horse.name}</td>
               <td>
                 <input
                   type="number"

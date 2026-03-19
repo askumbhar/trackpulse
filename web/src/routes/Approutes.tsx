@@ -18,8 +18,11 @@ import BetSlip from "../components/user/BetSlip";
 import BettingHistory from "../components/user/BettingHistory";
 import BetConfirmation from "../components/user/BetConfirmation";
 import FileUploader from "../components/admin/FileUploader";
-import AppLayout from "../components/admin/AdminDashboard";
 import DepositFunds from "../components/user/DepositFunds";
+import AppLayout from "../components/common/AppLayout";
+import AdminDashboard from '../components/admin/AdminDashboard'
+import ForgotPassword from '../components/auth/ForgotPassword'
+
 
 // Helper so we don't repeat allowedRoles={["admin"]} on every line
 const AdminRoute = ({ element }) => (
@@ -54,36 +57,39 @@ export default function AppRoutes() {
             : <Navigate to={user.role === "Admin" ? "/admin/dashboard" : "/user/dashboard"} replace />
         }
       />
+      {/* ForgotPassword — always public, no redirect if logged in */}
+      <Route path="/forgot-password" element={<ForgotPassword />} />
+      <Route path="/unauthorized" element={<Unauthorized />} />
 
       {/* ── Admin-only routes ────────────────────────────────────────────── */}
       {/*    A user hitting ANY /admin/* path gets redirected to /dashboard   */}
-      <Route path="/admin/dashboard" element={<AdminRoute element={<AppLayout children={undefined} />} />} />
-      <Route path="/admin/odds"      element={<AdminRoute element={<AppLayout><OddsManager /></AppLayout>}         />} />
-      <Route path="/admin/users"     element={<AdminRoute element={<AppLayout><UserManager /></AppLayout>}          />} />
-      <Route path="/admin/reports"   element={<AdminRoute element={<AppLayout><Reports /></AppLayout>}         />} />
-      <Route path="/admin/deposits"  element={<AdminRoute element={<AppLayout><DepositApprove /></AppLayout>}        />} />
-      <Route path="/admin/fileUploader"  element={<AdminRoute element={<AppLayout><FileUploader /></AppLayout>}        />} />
+      <Route path="/admin/dashboard" element={<AdminRoute element={<AppLayout title="Admin Dashboard"> <AdminDashboard /></AppLayout>} />} />
+      <Route path="/admin/odds"      element={<AdminRoute element={<AppLayout title="Odds Manager"><OddsManager /></AppLayout>}         />} />
+      <Route path="/admin/users"     element={<AdminRoute element={<AppLayout title="User Manager"><UserManager /></AppLayout>}          />} />
+      <Route path="/admin/reports"   element={<AdminRoute element={<AppLayout title="Reports"><Reports /></AppLayout>}         />} />
+      <Route path="/admin/deposits"  element={<AdminRoute element={<AppLayout title="Deposit Approvals"><DepositApprove /></AppLayout>}        />} />
+      <Route path="/admin/fileUploader"  element={<AdminRoute element={<AppLayout title="File Uploader"><FileUploader /></AppLayout>}        />} />
       {/* <Route path="/admin/settings"  element={<AdminRoute element={<AdminSettings />}        />} /> */}
 
       {/* ── User-only routes ─────────────────────────────────────────────── */}
     
-      <Route path="/user/dashboard"       element={<UserRoute element={<AppLayout><UserDashboard /></AppLayout>}  />} />
-      <Route path="/user/betting"         element={<UserRoute element={<AppLayout><BetSlip /></AppLayout>}      />} />
-      <Route path="/user/bettinghistory"         element={<UserRoute element={<AppLayout><BettingHistory /></AppLayout>}        />} />
-      <Route path="/user/betconfirmation"element={<UserRoute element={<AppLayout><BetConfirmation /></AppLayout>}       />} />
-      <Route path="/user/depositfunds"    element={<UserRoute element={<AppLayout><DepositFunds /></AppLayout>}       />} />
+      <Route path="/user/dashboard"       element={<UserRoute element={<AppLayout title="User Dashboard"><UserDashboard /></AppLayout>}  />} />
+      <Route path="/user/betting"         element={<UserRoute element={<AppLayout title="Betting"><BetSlip /></AppLayout>}      />} />
+      <Route path="/user/bettinghistory"         element={<UserRoute element={<AppLayout title="Betting History"><BettingHistory /></AppLayout>}        />} />
+      <Route path="/user/betconfirmation"element={<UserRoute element={<AppLayout title="Bet Confirmation"><BetConfirmation /></AppLayout>}       />} />
+      <Route path="/user/depositfunds"    element={<UserRoute element={<AppLayout title="Deposit Funds"><DepositFunds /></AppLayout>}       />} />
       
       {/* <Route path="/profile"         element={<UserRoute element={<UserProfile />}           />} />
       <Route path="/settings"        element={<UserRoute element={<UserSettings />}          />} /> */}
 
       {/* ── Fallbacks ────────────────────────────────────────────────────── */}
-      <Route path="/unauthorized" element={<Unauthorized />} />
+      
       <Route
         path="/"
         element={
           !user
             ? <Navigate to="/login" replace />
-            : <Navigate to={user.role === "Admin" ? "/admin/dashboard" : "/dashboard"} replace />
+            : <Navigate to={user.role === "Admin" ? "/admin/dashboard" : "/user/dashboard"} replace />
         }
       />
       {/* Any unknown URL → back to role home */}
