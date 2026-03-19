@@ -2,87 +2,75 @@
 
 .sidebar {
   width: 265px;
-  min-height: 100vh;
   background-color: #1e2139;
   display: flex;
   flex-direction: column;
   transition: width 0.25s ease;
   position: fixed;
-  top: 0; left: 0;
-  z-index: 1045;
+
+  /* ── Sidebar starts from the very top of the viewport ──
+     The logo row (65px tall) visually aligns with the
+     header on the right side, giving the split-panel look. */
+  top: 0;
+  left: 0;
+  height: 100vh;
+
+  /* Must be above page content but below header (1050) */
+  z-index: 1040;
   overflow: hidden;
 }
 .sidebar.collapsed { width: 70px; }
 
+/* Mobile: slides in as full-height drawer from left */
 @media (max-width: 991px) {
   .sidebar {
     transform: translateX(-100%);
     transition: transform 0.25s ease, width 0.25s ease;
+    /* On mobile sidebar sits above header so user can close it */
+    z-index: 1055;
   }
   .sidebar.mobile-open { transform: translateX(0); }
 }
 
+/* Backdrop */
 .sidebar-backdrop {
   position: fixed; inset: 0;
   background: rgba(0,0,0,0.5);
   z-index: 1044;
 }
 
-/* ── Logo / brand row ─────────────────────────────── */
+/* ── Logo / brand row ────────────────────────────────
+   Height = 65px, same as the header, so they align
+   perfectly side by side on the same horizontal band. */
 .sidebar-logo {
-  height: 65px; min-height: 65px;
+  height: 65px;
+  min-height: 65px;
   display: flex; align-items: center; justify-content: space-between;
   padding: 0 1rem;
   border-bottom: 1px solid rgba(255,255,255,0.07);
   gap: 8px;
+  flex-shrink: 0;
 }
 
-/* Brand link (horse icon + name) */
 .sidebar-brand-link {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  text-decoration: none;
-  flex: 1;
-  min-width: 0;
+  display: flex; align-items: center; gap: 10px;
+  text-decoration: none; flex: 1; min-width: 0;
 }
-
 .sidebar-brand-text {
-  display: flex;
-  flex-direction: column;
-  gap: 1px;
-  min-width: 0;
+  display: flex; flex-direction: column; gap: 1px; min-width: 0;
 }
-
 .sidebar-brand-name {
-  font-size: 1rem;
-  font-weight: 700;
-  color: #f1f5f9;
-  letter-spacing: 0.04em;
-  white-space: nowrap;
-  line-height: 1.2;
+  font-size: 1rem; font-weight: 700; color: #f1f5f9;
+  letter-spacing: 0.04em; white-space: nowrap; line-height: 1.2;
 }
-
-/* Role pill next to brand name */
 .sidebar-brand-role {
-  font-size: 9px;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  padding: 1px 7px;
-  border-radius: 10px;
-  align-self: flex-start;
+  font-size: 9px; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 1px 7px; border-radius: 10px; align-self: flex-start;
 }
-.sidebar-brand-role.role-admin {
-  background: rgba(239,68,68,0.15);
-  color: #ef4444;
-}
-.sidebar-brand-role.role-user {
-  background: rgba(23,198,83,0.15);
-  color: #17c653;
-}
+.sidebar-brand-role.role-admin { background: rgba(239,68,68,0.15); color: #ef4444; }
+.sidebar-brand-role.role-user  { background: rgba(23,198,83,0.15);  color: #17c653; }
 
-/* Collapse button */
 .collapse-btn {
   background: none;
   border: 1px solid rgba(255,255,255,0.15);
@@ -94,18 +82,18 @@
 }
 .collapse-btn:hover { color: #fff; border-color: rgba(255,255,255,0.4); }
 
-/* ── Scrollable menu ──────────────────────────────── */
+/* ── Scrollable nav menu ─────────────────────────── */
 .sidebar-menu {
   flex: 1;
   overflow-y: auto; overflow-x: hidden;
   padding: 0.5rem 0;
   scrollbar-width: thin;
   scrollbar-color: #2e3354 transparent;
+  min-height: 0;
 }
 .sidebar-menu::-webkit-scrollbar { width: 4px; }
 .sidebar-menu::-webkit-scrollbar-thumb { background: #2e3354; border-radius: 4px; }
 
-/* Section label */
 .sidebar-section-label {
   font-size: 10px; font-weight: 700;
   letter-spacing: 0.12em; text-transform: uppercase;
@@ -114,7 +102,7 @@
   white-space: nowrap; overflow: hidden;
 }
 
-/* Menu row */
+/* Menu item */
 .menu-btn {
   display: flex; align-items: center;
   width: 100%; background: none; border: none;
@@ -127,29 +115,27 @@
 .menu-btn:hover     { background: rgba(255,255,255,0.05); color: #fff; }
 .menu-btn.is-active { background: rgba(255,255,255,0.08); color: #fff; }
 
-/* Active / current page — green accent */
+/* Active / current route */
 .menu-btn.current {
   background: rgba(23,198,83,0.1) !important;
   color: #17c653 !important;
   border-left: 3px solid #17c653;
 }
 
-/* Sign out — red tint */
+/* Sign out */
 .signout-btn { color: #e05c5c !important; }
 .signout-btn:hover { background: rgba(248,40,90,0.08) !important; }
 
 .menu-icon  { font-size: 1.05rem; min-width: 22px; margin-right: 12px; }
 .menu-label { flex: 1; }
 
-/* Collapsed: hide labels */
+/* Collapsed mode — hide labels */
 .sidebar.collapsed .menu-label,
-.sidebar.collapsed .sidebar-section-label {
-  opacity: 0; width: 0; overflow: hidden;
-}
+.sidebar.collapsed .sidebar-section-label { opacity: 0; width: 0; overflow: hidden; }
 .sidebar.collapsed .menu-icon { margin-right: 0; }
 .sidebar.collapsed .menu-btn  { justify-content: center; padding: 0.6rem; }
 
-/* Submenu (if needed later) */
+/* Submenu */
 .submenu {
   overflow: hidden; max-height: 0;
   transition: max-height 0.25s ease;
@@ -162,34 +148,29 @@
   color: #6c7593; font-size: 13px; text-decoration: none;
   transition: color 0.15s;
 }
-.submenu a:hover  { color: #fff; }
+.submenu a:hover   { color: #fff; }
 .submenu a.current { color: #17c653; }
 .submenu-dot {
   width: 5px; height: 5px; min-width: 5px;
-  border-radius: 50%; background: #4a5070;
-  transition: background 0.15s;
+  border-radius: 50%; background: #4a5070; transition: background 0.15s;
 }
 .submenu a:hover .submenu-dot,
 .submenu a.current .submenu-dot { background: #17c653; }
 
-/* ── User info footer ────────────────────────────── */
+/* ── User footer ─────────────────────────────────── */
 .sidebar-user-footer {
   padding: 12px 16px;
   border-top: 1px solid rgba(255,255,255,0.07);
-  display: flex;
-  align-items: center;
-  gap: 10px;
+  display: flex; align-items: center; gap: 10px;
+  flex-shrink: 0;
 }
-
 .sidebar-avatar {
-  width: 32px; height: 32px;
-  border-radius: 50%;
+  width: 32px; height: 32px; border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
   color: #fff; font-weight: 700; font-size: 13px; flex-shrink: 0;
 }
 .sidebar-avatar.avatar-admin { background: #ef4444; }
 .sidebar-avatar.avatar-user  { background: #17c653; }
-
 .sidebar-user-name {
   color: #e2e8f0; font-size: 12px; font-weight: 600;
   overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
