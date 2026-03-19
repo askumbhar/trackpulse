@@ -49,7 +49,6 @@ export default function BettingHistory() {
 
   return (
     <div className="rsw-root">
-      <h4 className="rsw-page-title">Betting History</h4>
       <p className="rsw-page-sub">Review your past bets and performance</p>
 
       {/* Date strip */}

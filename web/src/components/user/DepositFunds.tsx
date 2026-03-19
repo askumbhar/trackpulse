@@ -119,7 +119,7 @@ export default function DepositFunds() {
 
   return (
     <div className="df-root">
-      <h4 className="df-page-title">Deposit Funds</h4>
+     
       <p className="df-page-sub">Scan the QR, pay, then upload your payment proof below</p>
 
       <div className="row g-4" style={{ maxWidth: 900 }}>

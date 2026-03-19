@@ -53,6 +53,8 @@ const adminMenu = [
   { label: 'Reports',           icon: 'bi-bar-chart',    href: '/admin/reports'      },
   { label: 'Deposit Approvals', icon: 'bi-cash-stack',   href: '/admin/deposits'     },
   { label: 'User Manager',      icon: 'bi-people',       href: '/admin/users'        },
+  { label: 'Race Stream', icon: 'bi-play-circle', href: '/admin/streams' },
+  { label: 'Race Stream Manager', icon: 'bi-broadcast', href: '/admin/streams/manage' }
 ]
 
 const userMenu = [
@@ -60,6 +62,7 @@ const userMenu = [
   { label: 'Bet Now',         icon: 'bi-lightning',    href: '/user/betting'        },
   { label: 'Betting History', icon: 'bi-clock-history',href: '/user/bettinghistory' },
   { label: 'Deposit Funds',   icon: 'bi-wallet2',      href: '/user/depositfunds'   },
+  { label: 'Race Streams', icon: 'bi-play-circle', href: '/user/streams' }
 ]
 
 interface Props {

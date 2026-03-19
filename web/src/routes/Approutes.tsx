@@ -16,12 +16,13 @@ import DepositApprove from "../components/admin/DepositApprove";
 import UserDashboard from "../components/user/Dashboard";
 import BetSlip from "../components/user/BetSlip";
 import BettingHistory from "../components/user/BettingHistory";
-import BetConfirmation from "../components/user/BetConfirmation";
 import FileUploader from "../components/admin/FileUploader";
 import DepositFunds from "../components/user/DepositFunds";
 import AppLayout from "../components/common/AppLayout";
 import AdminDashboard from '../components/admin/AdminDashboard'
 import ForgotPassword from '../components/auth/ForgotPassword'
+import RaceStream        from '../components/shared/RaceStream'
+import RaceStreamManager from '../components/admin/RaceStreamManager'
 
 
 // Helper so we don't repeat allowedRoles={["admin"]} on every line
@@ -69,6 +70,8 @@ export default function AppRoutes() {
       <Route path="/admin/reports"   element={<AdminRoute element={<AppLayout title="Reports"><Reports /></AppLayout>}         />} />
       <Route path="/admin/deposits"  element={<AdminRoute element={<AppLayout title="Deposit Approvals"><DepositApprove /></AppLayout>}        />} />
       <Route path="/admin/fileUploader"  element={<AdminRoute element={<AppLayout title="File Uploader"><FileUploader /></AppLayout>}        />} />
+      <Route path="/admin/streams/manage"  element={<AdminRoute element={<AppLayout title="Race Stream Manager"><RaceStreamManager /></AppLayout>}        />} />
+      <Route path="/admin/streams" element= {<AdminRoute element={<AppLayout title="Race Streams"> <RaceStream /> </AppLayout>}   />} />
       {/* <Route path="/admin/settings"  element={<AdminRoute element={<AdminSettings />}        />} /> */}
 
       {/* ── User-only routes ─────────────────────────────────────────────── */}
@@ -76,9 +79,8 @@ export default function AppRoutes() {
       <Route path="/user/dashboard"       element={<UserRoute element={<AppLayout title="User Dashboard"><UserDashboard /></AppLayout>}  />} />
       <Route path="/user/betting"         element={<UserRoute element={<AppLayout title="Betting"><BetSlip /></AppLayout>}      />} />
       <Route path="/user/bettinghistory"         element={<UserRoute element={<AppLayout title="Betting History"><BettingHistory /></AppLayout>}        />} />
-      <Route path="/user/betconfirmation"element={<UserRoute element={<AppLayout title="Bet Confirmation"><BetConfirmation /></AppLayout>}       />} />
       <Route path="/user/depositfunds"    element={<UserRoute element={<AppLayout title="Deposit Funds"><DepositFunds /></AppLayout>}       />} />
-      
+      <Route path="/user/streams"  element ={<UserRoute element= { <AppLayout title="Race Streams"> <RaceStream /> </AppLayout>}   />} />
       {/* <Route path="/profile"         element={<UserRoute element={<UserProfile />}           />} />
       <Route path="/settings"        element={<UserRoute element={<UserSettings />}          />} /> */}
 

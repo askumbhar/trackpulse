@@ -95,7 +95,6 @@ export default function AdminDashboardPage() {
 
   return (
     <div className="db-root">
-      <h4 className="db-page-title">Admin Dashboard</h4>
       <p className="db-page-sub">Welcome back — here's what's happening on TrackPulse today.</p>
 
       {/* ── Stat cards ───────────────────────────── */}
