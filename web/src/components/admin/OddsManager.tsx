@@ -20,18 +20,17 @@ export default function OddsManager() {
   return (
     <div className="arm-root">
 
-      {/* Top bar: date picker + active city label */}
+      {/* ── Top bar: date picker only
+           NOTE: Title "Odds Manager" is already shown by AppLayout toolbar above.
+           We only show the city + date subtitle and the date picker here.        */}
       <div className="arm-topbar">
-        <div>
-          <h5 className="arm-page-title">Odds Manager</h5>
-          <p className="arm-page-sub">
-            {selectedCity} · {formatDate(selectedDate)}
-          </p>
-        </div>
+        <p className="arm-page-sub" style={{ margin: 0 }}>
+          {selectedCity} · {formatDate(selectedDate)}
+        </p>
         <RaceDatePicker value={selectedDate} onChange={date => setSelectedDate(date)} />
       </div>
 
-      {/* City tab strip */}
+      {/* ── City tab strip ─────────────────────── */}
       <div className="arm-city-strip">
         {cities.map(city => (
           <button
@@ -44,7 +43,7 @@ export default function OddsManager() {
         ))}
       </div>
 
-      {/* Race accordion list */}
+      {/* ── Race accordion list ────────────────── */}
       <RaceList city={selectedCity} date={formatDate(selectedDate)} />
 
     </div>
