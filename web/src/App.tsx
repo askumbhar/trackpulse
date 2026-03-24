@@ -2,14 +2,14 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
-import  hubconnection  from './hubConnect'
+// import  hubconnection  from './hubConnect'
 
 function App() {
   const [count, setCount] = useState(0)
 
-  const connection = async () => {
-    await hubconnection.invoke("JoinRace", "1");
-  }
+  // const connection = async () => {
+  //   await hubconnection.invoke("JoinRace", "1");
+  // }
 //  connection();
   return (
     <>

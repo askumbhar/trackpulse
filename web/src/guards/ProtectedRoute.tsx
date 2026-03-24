@@ -1,7 +1,12 @@
 import { Navigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
-export default function ProtectedRoute({ allowedRoles = [], element }) {
+interface ProtectedRouteProps {
+  allowedRoles?: string[];
+  element: React.ReactElement;
+}
+
+export default function ProtectedRoute({ allowedRoles = [], element }: ProtectedRouteProps) {
   const { user } = useAuth();
  
   // // Not logged in → go to login

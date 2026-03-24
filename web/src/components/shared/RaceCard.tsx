@@ -29,7 +29,7 @@ const initialHorses: Horse[] = [
   { id: '#13', name: 'Silver Bullet',  winOdds: 4.5, placeOdds: 1.5 },
 ]
 
-export default function RaceCard({ raceId }: Props) {
+export default function RaceCard({ }: Props) {
   const [horses, setHorses] = useState<Horse[]>(initialHorses)
   const [saved,  setSaved]  = useState<Record<string, boolean>>({})
 

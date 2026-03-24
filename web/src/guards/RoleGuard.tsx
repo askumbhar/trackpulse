@@ -1,6 +1,12 @@
 import { useAuth } from "../context/AuthContext";
 
-export default function RoleGuard({ allowedRoles = [], children, fallback = null }) {
+interface RoleGuardProps {
+  allowedRoles?: string[];
+  children: React.ReactNode;
+  fallback?: React.ReactNode;
+}
+
+export default function RoleGuard({ allowedRoles = [], children, fallback = null }: RoleGuardProps) {
   const { user } = useAuth();
  
   // Not logged in or role not allowed → render fallback (default: nothing)

@@ -1,5 +1,4 @@
 // src/components/common/Sidebar.tsx
-import { useState } from 'react'
 import { useAuth } from '../../context/AuthContext'
 import '../../styles/Sidebar.css'
 

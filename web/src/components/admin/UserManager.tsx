@@ -370,7 +370,7 @@ export default function UserManager() {
         <WalletModal
           user={walletUser}
           onClose={() => setWalletUser(null)}
-          onConfirm={(type, amount, reason) => adjustWallet(walletUser.id, type, amount)}
+          onConfirm={(type, amount) => adjustWallet(walletUser.id, type, amount)}
         />
       )}
 

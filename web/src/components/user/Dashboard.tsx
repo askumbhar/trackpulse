@@ -3,23 +3,13 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../../context/AuthContext'
 import {
-  AreaChart, Area, BarChart, Bar,
+  BarChart, Bar,
   XAxis, YAxis, CartesianGrid, Tooltip,
   ResponsiveContainer, PieChart, Pie, Cell,
 } from 'recharts'
 import '../../styles/Dashboard.css'
 
 // ── Mock data ──────────────────────────────────────
-const betHistoryData = [
-  { label: 'Mon', won: 3, lost: 1 },
-  { label: 'Tue', won: 2, lost: 2 },
-  { label: 'Wed', won: 5, lost: 1 },
-  { label: 'Thu', won: 1, lost: 3 },
-  { label: 'Fri', won: 4, lost: 2 },
-  { label: 'Sat', won: 6, lost: 1 },
-  { label: 'Sun', won: 3, lost: 2 },
-]
-
 const profitData = [
   { label: 'Mon', profit: -200  },
   { label: 'Tue', profit: 350   },

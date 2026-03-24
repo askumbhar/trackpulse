@@ -26,12 +26,12 @@ import RaceStreamManager from '../components/admin/RaceStreamManager'
 
 
 // Helper so we don't repeat allowedRoles={["admin"]} on every line
-const AdminRoute = ({ element }) => (
+const AdminRoute = ({ element }: { element: React.ReactElement }) => (
   <ProtectedRoute allowedRoles={["Admin"]} element={element} />
 );
 
 // Helper for user-only routes
-const UserRoute = ({ element }) => (
+const UserRoute = ({ element }: { element: React.ReactElement }) => (
   <ProtectedRoute allowedRoles={["User"]} element={element} />
 );
 
