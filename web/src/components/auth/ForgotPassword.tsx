@@ -1,9 +1,8 @@
 // src/components/auth/ForgotPassword.tsx
 import { useState } from 'react'
 import axios from 'axios'
+import { API_ENDPOINTS } from '../../constants/api'
 import '../../styles/Login.css'
-
-const API_URL = 'https://localhost:7156/api/users/forgot-password'
 
 const HorseIcon = ({ size = 28, color = '#c9a84c' }: { size?: number; color?: string }) => (
   <svg width={size} height={size} viewBox="0 0 32 32" fill="none">
@@ -29,7 +28,7 @@ export default function ForgotPassword() {
     setLoading(true)
     setError('')
     try {
-      await axios.post(API_URL, { mobileNumber: mobile })
+      await axios.post(API_ENDPOINTS.FORGOT_PASSWORD, { mobileNumber: mobile })
       setStep('sent')
     } catch (err: any) {
       setError(err.response?.data?.message ?? 'Something went wrong. Please try again.')

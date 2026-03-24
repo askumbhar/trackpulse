@@ -2,9 +2,8 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import { API_ENDPOINTS } from '../../constants/api'
 import '../../styles/Login.css'
-
-const API_URL = 'https://localhost:7156/api/users/register'
 
 const HorseIcon = ({ size = 28, color = '#c9a84c' }: { size?: number; color?: string }) => (
   <svg width={size} height={size} viewBox="0 0 32 32" fill="none">
@@ -47,7 +46,7 @@ export default function Signup() {
 
     setLoading(true)
     try {
-      await axios.post(API_URL, {
+      await axios.post(API_ENDPOINTS.REGISTER, {
         fullName:     form.name,
         mobileNumber: form.mobile,
         email:        form.email,

@@ -1,6 +1,7 @@
 // src/components/admin/FileUploader.tsx
 import { useState } from 'react'
 import axios from 'axios'
+import { API_ENDPOINTS } from '../../constants/api'
 
 export default function FileUploader() {
   const [races, setRaces] = useState([])
@@ -19,7 +20,7 @@ export default function FileUploader() {
   }
 
   const handleImport = async () => {
-    await axios.post('/api/races/import', races)
+    await axios.post(API_ENDPOINTS.IMPORT_RACES, races)
     alert('Races imported successfully!')
   }
 

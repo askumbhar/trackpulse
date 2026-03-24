@@ -1,5 +1,6 @@
 // src/components/shared/RaceList.tsx
 import { useEffect, useState } from 'react'
+import { API_ENDPOINTS } from '../../constants/api'
 import RaceCard from './RaceCard'
 
 interface Race {
@@ -23,7 +24,7 @@ export default function RaceList({ city, date }: Props) {
     setLoading(true)
     setError('')
 
-    fetch(`https://localhost:7156/api/race/races?cityName=${city}&raceDate=${date}`)
+    fetch(`${API_ENDPOINTS.GET_RACES}?cityName=${city}&raceDate=${date}`)
       .then(res => {
         if (!res.ok) throw new Error(`Server error: ${res.status}`)
         return res.json()

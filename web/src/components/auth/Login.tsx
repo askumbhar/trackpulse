@@ -3,9 +3,8 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../../context/AuthContext'
 import axios from 'axios'
+import { API_ENDPOINTS } from '../../constants/api'
 import '../../styles/Login.css'
-
-const API_URL = 'https://localhost:7156/api/users/authenticate'
 
 export default function Login() {
   const [mobile,   setMobile]   = useState('')
@@ -22,7 +21,7 @@ export default function Login() {
     setLoading(true)
     try {
       const res = await axios.post(
-        API_URL,
+        API_ENDPOINTS.AUTHENTICATE,
         { mobileNumber: mobile, password },
         { headers: { 'Content-Type': 'application/json' } }
       )
